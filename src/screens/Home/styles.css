@@ -1,0 +1,148 @@
+.main {
+   background-color: rgb(53, 194, 255, 1);
+   display: flex;
+   height: 100vh;
+   align-items: center;
+   justify-content: center;
+}
+
+.container {
+   /* "position: relative" serve para que os itens dentro dessa tag com a propriedade "position: absolute" não saiam de dentro dela */
+   position: relative;
+   /* background-color: green; */
+}
+
+.pokedex-image {
+   width: 100%;
+   max-width: 700px;
+}
+
+.tela {
+   position: absolute;
+   width: 35%;
+   height: 30%;
+   border: 3.5px solid #4E4E4E;
+   border-top-right-radius: 10px;
+   border-top-left-radius: 10px;
+   background-color: #fff;
+   bottom: 40%;
+   left: 6%;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.pokemon-image {
+   position: absolute;
+   width: 50%;
+}
+
+.pokemon-data {
+   position: absolute;
+   width: 35%;
+   border: 1px solid #4E4E4E;
+   border-bottom-right-radius: 10px;
+   border-bottom-left-radius: 10px;
+   left: 6%;
+   bottom: 35%;
+   padding: 0.5%;
+   background-color: #4E4E4E;
+
+   font-size: 16px;
+   text-align: center;
+}
+
+.pokemon-number {
+   color: #aaa;
+}
+
+.pokemon-name {
+   color: #fff;
+   /* "capitalize" serve para deixar a primeira letra maiuscula */
+   text-transform: capitalize;
+}
+
+.form {
+   position: absolute;
+   width: 35%;
+   left: 6%;
+   bottom: 23%;
+}
+
+.search {
+   width: 100%;
+   padding: 3%;
+   /* "outline: none;" serve para tirar a borda quando se clica no input */
+   outline: none;
+   border: 3.5px solid #4E4E4E;
+   border-radius: 10px;
+
+   font-size: 16px;
+   font-weight: 600;
+   color: #4E4E4E;
+}
+
+.buttons {
+   position: absolute;
+   width: 35%;
+   bottom: 12%;
+   left: 6%;
+   display: flex;
+   /* "gap" foi usado aqui para dar espaço entre os botoes */
+   gap: 15px;
+}
+
+.button {
+   width: 50%;
+   padding: 3%;
+   border: 3.5px solid #4E4E4E;
+   border-radius: 10px;
+   background-color: rgb(49, 49, 49);
+   font-size: 16px;
+   color: #fff;
+}
+
+/* ":active" serve para mudar o visual do botão quando ele é clicado */
+.button:active {
+   background-color: #4E4E4E;
+}
+
+/* ////////////////////////TABLET//////////////////////// */
+@media(max-width: 700px) {
+   .container {
+      margin-left: 2%;
+      margin-right: 2%;
+   }
+
+   .tela {
+      border: 3px solid #4E4E4E;
+   }
+
+   .search {
+      border: 3px solid #4E4E4E;
+      font-size: 12px;
+   }
+
+   .button {
+      border: 3px solid #4E4E4E;
+      font-size: 12px;
+   }
+}
+
+/* ////////////////////////MOBILE//////////////////////// */
+@media(max-width: 450px) {
+   .tela {
+      border: 2px solid #4E4E4E;
+   }
+
+   .search {
+      border: 2px solid #4E4E4E;
+      font-size: 7px;
+   }
+
+   .button {
+      border: 2px solid #4E4E4E;
+      font-size: 7px;
+   }
+}
