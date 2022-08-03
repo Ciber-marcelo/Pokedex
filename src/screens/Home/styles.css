@@ -35,7 +35,7 @@
 
 .pokemon-image {
    position: absolute;
-   width: 50%;
+   height: 80%;
 }
 
 .pokemon-data {
@@ -79,7 +79,7 @@
    border-radius: 10px;
 
    font-size: 16px;
-   font-weight: 600;
+   /* font-weight: 600; */
    color: #4E4E4E;
 }
 
