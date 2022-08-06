@@ -17,8 +17,6 @@ export default function Home() {
    const [pokemonWeight, setPokemonWeight] = useState('60');
    const [pokemonAbilitie, setPokemonAbilitie] = useState('static');
 
-   
-
    //"await" é usado em funções "async", serve para a função só retornar depois de ter conseguido buscar os dados
    async function buscaPokemon(pokemon) {
       const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
@@ -29,8 +27,8 @@ export default function Home() {
 
    async function renderPokemon(pokemon) {
       //os "set" abaixo são oque aparece enquanto a API n busca os daods
-      setPokemonName('Carregando...');
       setPokemonNumber('');
+      setPokemonName('Carregando...');
       setPokemonType1('Carregando...');
       setPokemonType2('');
       setPokemonSpecie('Carregando...');
@@ -40,16 +38,21 @@ export default function Home() {
 
       const data = await buscaPokemon(pokemon);
 
-      if (data) {
-         setPokemonName(data.name);
+      
+
+      if (data && data.id) {
          setPokemonNumber(data.id);
+         setPokemonName(data.name);
          setPokemonImage(data['sprites']['other']['official-artwork']['front_default']);
          setPokemonType1(data['types']['0']['type']['name']);
-         setPokemonType2(data['types']['1']['type']['name']);
+         if (data['types']['1'] !== undefined) {
+            setPokemonType2(data['types']['1']['type']['name']);
+         }
          setPokemonSpecie(data['species']['name']);
          setPokemonHeight(data.height);
          setPokemonWeight(data.weight);
          setPokemonAbilitie(data['abilities']['0']['ability']['name']);
+         
       } else {
          setPokemonName('Not found');
          setPokemonNumber('');
@@ -63,12 +66,18 @@ export default function Home() {
       }
    }
 
-   // "e" signific evento e "e.target.value" é oque tem nesse evento, neste caso é o texto digitado.
+   // "e" significa evento e "e.target.value" é oque tem nesse evento, neste caso é o texto digitado.
    //"toLowerCase" serve para deixar as letras minusculas, asim mesmo se o usuario digitar com letras maiusculas a busca na API vai ser com letras minusculas
    //aqui eu usei "const" em vez de "function" pq tive q usar o "() =>" q é uma arrow function, então se eu usasse "function" ficaria redundante com dus funçoes e ia dar erro.
    const onChangeHandler = (e) => {
       setSearch(e.target.value.toLowerCase())
-      console.log(e.target.value)
+   }
+
+   //o numero "13" é o codigo(keyCode) referente a telcla "Enter"
+   const keyPress = (e) => {
+      if(e.keyCode === 13){
+         renderPokemon(search);
+      }
    }
 
    function anterior() {
@@ -95,8 +104,8 @@ export default function Home() {
                      <li>Type: {pokemonType1} </li>
                   }
                   <li>Specie: {pokemonSpecie} </li>
-                  <li>Height: {pokemonHeight} </li>
-                  <li>weight: {pokemonWeight} </li>
+                  <li>Height: {pokemonHeight * 10}c </li>
+                  <li>weight: {pokemonWeight * 10}g </li>
                   <li>Abilitie: {pokemonAbilitie} </li>
                </ul>
             </div>
@@ -104,21 +113,22 @@ export default function Home() {
             <h1 className="pokemon-data">
                {
                   pokemonNumber !== '' ?
-                  <span className="pokemon-number">{pokemonNumber} - </span>
+                     <span className="pokemon-number">{pokemonNumber} - </span>
                   :
-                  ''
+                     ""
                }
                <span className="pokemon-name">{pokemonName}</span>
             </h1>
 
             <div className="form">
                <input
-                  // type="text"
-                  // required
                   className="search"
                   placeholder="Name or Number"
                   onChange={onChangeHandler}
+                  //sempre que vc apeta um botão vc chama o "onKeyDown"
+                  onKeyDown={keyPress}
                />
+               
                {/* não sei exatamente como se usa "arrow function / () =>" mas tive q usar aqui se não a aplicação buga */}
                <button onClick={() => renderPokemon(search)} className='button-search'>
                   <img src={lupa} className='lupa-image' alt="lupa" />
@@ -126,17 +136,11 @@ export default function Home() {
             </div>
 
             <div className="buttons">
-               <button
-                  className="button"
-                  onClick={anterior}
-               >
+               <button className="button" onClick={anterior} >
                   &lt;&lt; Anterior
                </button>
 
-               <button
-                  className="button"
-                  onClick={proximo}
-               >
+               <button className="button" onClick={proximo} >
                   Próximo &gt;&gt;
                </button>
             </div>

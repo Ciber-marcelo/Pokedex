@@ -56,6 +56,7 @@
    justify-content: space-between;
    list-style: none;
 
+   font-weight: 600;
    font-size: 16px;
    color: #4E4E4E;
 }
@@ -96,6 +97,7 @@
    width: 35%;
    left: 6%;
    bottom: 23%;
+   /* "gap" foi usado aqui para dar espaço entre os botoes */
    gap: 5px;
 }
 
@@ -108,7 +110,6 @@
    border-radius: 10px;
 
    font-size: 16px;
-   /* font-weight: 600; */
    color: #4E4E4E;
 }
 
@@ -123,6 +124,11 @@
    justify-content: center;
 }
 
+/* ":active" serve para mudar o visual do botão quando ele é clicado */
+.button-search:active {
+   background-color: #4E4E4E;
+}
+
 .lupa-image {
    width: 70%;
 }
@@ -133,7 +139,6 @@
    bottom: 12%;
    left: 6%;
    display: flex;
-   /* "gap" foi usado aqui para dar espaço entre os botoes */
    gap: 15px;
 }
 
@@ -147,7 +152,6 @@
    color: #fff;
 }
 
-/* ":active" serve para mudar o visual do botão quando ele é clicado */
 .button:active {
    background-color: #4E4E4E;
 }
