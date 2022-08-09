@@ -29,16 +29,14 @@ export default function Home() {
       //os "set" abaixo são oque aparece enquanto a API n busca os daods
       setPokemonNumber('');
       setPokemonName('Carregando...');
-      setPokemonType1('Carregando...');
+      setPokemonType1('');
       setPokemonType2('');
-      setPokemonSpecie('Carregando...');
-      setPokemonHeight('Carregando...');
-      setPokemonWeight('Carregando...');
-      setPokemonAbilitie('Carregando...');
+      setPokemonSpecie('');
+      setPokemonHeight('');
+      setPokemonWeight('');
+      setPokemonAbilitie('');
 
       const data = await buscaPokemon(pokemon);
-
-      
 
       if (data && data.id) {
          setPokemonNumber(data.id);
@@ -52,7 +50,6 @@ export default function Home() {
          setPokemonHeight(data.height);
          setPokemonWeight(data.weight);
          setPokemonAbilitie(data['abilities']['0']['ability']['name']);
-         
       } else {
          setPokemonName('Not found');
          setPokemonNumber('');
@@ -75,7 +72,7 @@ export default function Home() {
 
    //o numero "13" é o codigo(keyCode) referente a telcla "Enter"
    const keyPress = (e) => {
-      if(e.keyCode === 13){
+      if (e.keyCode === 13) {
          renderPokemon(search);
       }
    }
@@ -96,25 +93,135 @@ export default function Home() {
             </div>
 
             <div className="tela2">
-               <ul className="list-items">
+               <ul className="list-items1">
+                  <li>Type: </li>
                   {
-                     pokemonType2 !== '' ? 
-                     <li>Type: {pokemonType1} / {pokemonType2} </li>
+                     pokemonType1 === 'normal' ?
+                     <li className="type normal">{pokemonType1}</li>
                      :
-                     <li>Type: {pokemonType1} </li>
+                     pokemonType1 === 'fire' ?
+                     <li className="type fire">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'water' ?
+                     <li className="type water">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'electric' ?
+                     <li className="type electric">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'grass' ?
+                     <li className="type grass">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'ice' ?
+                     <li className="type ice">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'fighting' ?
+                     <li className="type fighting">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'poison' ?
+                     <li className="type poison">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'ground' ?
+                     <li className="type ground">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'flying' ?
+                     <li className="type flying">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'psychic' ?
+                     <li className="type psychic">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'bug' ?
+                     <li className="type bug">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'rock' ?
+                     <li className="type rock">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'ghost' ?
+                     <li className="type ghost">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'dragon' ?
+                     <li className="type dragon">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'dark' ?
+                     <li className="type dark">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'steel' ?
+                     <li className="type steel">{pokemonType1}</li>
+                     :
+                     pokemonType1 === 'fairy' ?
+                     <li className="type fairy">{pokemonType1}</li>
+                     :
+                     <li> {pokemonType1}</li>
                   }
-                  <li>Specie: {pokemonSpecie} </li>
-                  <li>Height: {pokemonHeight * 10}c </li>
-                  <li>weight: {pokemonWeight * 10}g </li>
-                  <li>Abilitie: {pokemonAbilitie} </li>
+
+                  { 
+                     pokemonType2 === "" ?
+                     ""
+                     :
+                     pokemonType2 === 'normal' ?
+                     <li className="type normal">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'fire' ?
+                     <li className="type fire">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'water' ?
+                     <li className="type water">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'electric' ?
+                     <li className="type electric">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'grass' ?
+                     <li className="type grass">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'ice' ?
+                     <li className="type ice">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'fighting' ?
+                     <li className="type fighting">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'poison' ?
+                     <li className="type poison">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'ground' ?
+                     <li className="type ground">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'flying' ?
+                     <li className="type flying">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'psychic' ?
+                     <li className="type psychic">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'bug' ?
+                     <li className="type bug">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'rock' ?
+                     <li className="type rock">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'ghost' ?
+                     <li className="type ghost">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'dragon' ?
+                     <li className="type dragon">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'dark' ?
+                     <li className="type dark">{pokemonType2}</li>
+                     :
+                     pokemonType2 === 'steel' ?
+                     <li className="type steel">{pokemonType2}</li>
+                     :
+                     <li className="type fairy">{pokemonType2}</li>
+                  }
                </ul>
+               <li className="list-items2">Specie: {pokemonSpecie} </li>
+               <li className="list-items2">Height: {pokemonHeight * 10}c </li>
+               <li className="list-items2">Weight: {pokemonWeight * 10}g </li>
+               <li className="list-items2">Abilitie: {pokemonAbilitie} </li>
             </div>
 
             <h1 className="pokemon-data">
                {
                   pokemonNumber !== '' ?
                      <span className="pokemon-number">{pokemonNumber} - </span>
-                  :
+                     :
                      ""
                }
                <span className="pokemon-name">{pokemonName}</span>
@@ -128,7 +235,7 @@ export default function Home() {
                   //sempre que vc apeta um botão vc chama o "onKeyDown"
                   onKeyDown={keyPress}
                />
-               
+
                {/* não sei exatamente como se usa "arrow function / () =>" mas tive q usar aqui se não a aplicação buga */}
                <button onClick={() => renderPokemon(search)} className='button-search'>
                   <img src={lupa} className='lupa-image' alt="lupa" />
@@ -137,11 +244,11 @@ export default function Home() {
 
             <div className="buttons">
                <button className="button" onClick={anterior} >
-                  &lt;&lt; Anterior
+                  &lt;&lt; Prev
                </button>
 
                <button className="button" onClick={proximo} >
-                  Próximo &gt;&gt;
+                  Next &gt;&gt;
                </button>
             </div>
 
