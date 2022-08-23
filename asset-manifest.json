@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Pokedex/static/css/main.abb703dd.css",
+    "main.js": "/Pokedex/static/js/main.67afe9fa.js",
+    "static/media/pokedex.png": "/Pokedex/static/media/pokedex.f3ad2d2e19d2661d223d.png",
+    "static/media/lupa.png": "/Pokedex/static/media/lupa.1fee02485385ff760ed2.png",
+    "index.html": "/Pokedex/index.html",
+    "main.abb703dd.css.map": "/Pokedex/static/css/main.abb703dd.css.map",
+    "main.67afe9fa.js.map": "/Pokedex/static/js/main.67afe9fa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.abb703dd.css",
+    "static/js/main.67afe9fa.js"
+  ]
+}
