@@ -115,7 +115,7 @@ export default function Home() {
                <input
                   type="text"
                   placeholder="Name or Number"
-                  onChange={e => getPokemon(e.target.value)}
+                  onChange={e => getPokemon(e.target.value.toLowerCase())}
                />
             </Search>
 

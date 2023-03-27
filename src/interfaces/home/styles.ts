@@ -6,7 +6,7 @@ type PokemonType = {
 }
 
 export const Main = styled.div`
-   background-color: ${theme.typesColor.fire};
+   background-color: rgb(53, 194, 255, 1);
    display: flex;
    height: 100vh;
    align-items: center;
@@ -17,7 +17,7 @@ export const Container = styled.div`
    /* "position: relative" serve para que os itens dentro dessa tag com a propriedade "position: absolute" não saiam de dentro dela */
    position: relative;
    display: flex;
-   background-color: red;
+   /* background-color: red; */
 `;
 
 export const Image = styled.img`
@@ -28,14 +28,14 @@ export const Image = styled.img`
 export const ScreenLeft = styled.div`
    position: absolute;
    width: 39.4%;
-   height: 40.65%;
+   height: 43.55%;
    border: 3.5px solid #4E4E4E;
    //"box-sizing: border-box" serve para fazer a borda ficar pro lado de dentro
    box-sizing: border-box;
    border-top-right-radius: 10px;
    border-top-left-radius: 10px;
    background-color: #fff;
-   bottom: 37.4%;
+   bottom: 34.5%;
    left: 4%;
 
    display: flex;
@@ -45,8 +45,8 @@ export const ScreenLeft = styled.div`
 
 export const PokemonImage = styled.img`
     position: absolute;
-    height: 100%;
-    background-color: red;
+    height: 95%;
+    /* background-color: red; */
 `
 
 export const Info = styled.text`
@@ -57,7 +57,7 @@ export const Info = styled.text`
    border-bottom-right-radius: 10px;
    border-bottom-left-radius: 10px;
    left: 4%;
-   bottom: 32.4%;
+   bottom: 29.5%;
    /* padding: 0.5%; */
    background-color: #4E4E4E;
 
@@ -72,7 +72,7 @@ export const Search = styled.div`
    position: absolute;
    width: 39.4%;
    left: 4%;
-   bottom: 20.5%;
+   bottom: 19%;
    /* "gap" foi usado aqui para dar espaço entre os botoes */
    gap: 5px;
 
@@ -115,15 +115,16 @@ export const ScreenRight = styled.div`
    overflow-y: auto;
    position: absolute;
    width: 39.4%;
-   height: 58%;
+   height: 62%;
    border: 3.5px solid #4E4E4E;
    box-sizing: border-box;
    border-radius: 10px;
    background-color: #fff;
-   bottom: 20.05%;
+   bottom: 16.05%;
    left: 54.5%;
    display: flex;
    flex-direction: column;
+   padding: 3px;
 
    button {
       display: flex;
@@ -132,12 +133,13 @@ export const ScreenRight = styled.div`
    //estilizações da scrollbar, link de referencia: https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp
    ::-webkit-scrollbar {
       width: 10px;
-      
    }
 
    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 10px;
+      /* background: #f1f1f1; */
+      background: #4E4E4E;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
    }
 
    ::-webkit-scrollbar-thumb {
@@ -147,7 +149,8 @@ export const ScreenRight = styled.div`
    }
 
    ::-webkit-scrollbar-thumb:hover {
-      background: #555; 
+      /* background: #555;  */
+      background: lightgray;
    }
 `;
 
@@ -167,7 +170,9 @@ export const ButtonGen = styled.div`
    justify-content: space-between;
 
    button {
-      /* padding: 1%; */
+      /* padding: 1%; */                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+      width: 25px;
+      height: 25px;
       border: 2px solid #4E4E4E;
       border-radius: 25px;
       background-color: rgb(49, 49, 49);
