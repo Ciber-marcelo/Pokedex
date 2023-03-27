@@ -7,56 +7,65 @@ import {
    Image,
    ScreenLeft,
    ScreenRight,
-   PokemonImage
+   PokemonImage,
+   Info,
+   Search,
+   Buttons,
+   Line,
+   ButtonGen,
+   ButtonSp
 } from "./styles"
 
-type Pokemon = {
-   id: number
-   name: string
-   url: string
+type PokemonObj = {
+   name: string,
+   id: number,
    types: PokemonType[]
+   sprite: any
+   url?: any
 }
 
-export type PokemonType = {
+type PokemonType = {
    type: {
       name: string
    }
 }
 
 export default function Home() {
-   // const [search, setSearch] = useState('');
-   // const [pokemonNumber, setPokemonNumber] = useState(25);
-   // const [pokemonName, setPokemonName] = useState('pikachu');
    const [pokemonArr, setPokemonArr] = useState([]);
-   const [pokemonImg, setPokemonImg] = useState('')
-   // const [pokemonImage, setPokemonImage] = useState('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png');
-   // const [pokemonType1, setPokemonType1] = useState('electric');
-   // const [pokemonType2, setPokemonType2] = useState('');
+   const [pokemonObj, setPokemonObj] = useState<PokemonObj>({} as PokemonObj)
+   const [pokemonSp, setPokemonSp] = useState(false)
 
    //",[]" serve para que o useEffect chame a função apenas uma vez, quando a pagina é aberta.
    useEffect(() => {
-      getPokemonGen(10)
-      searchPokemon(25)
-   })
+      getPokemonGen(0, 151)
+      getPokemon(4)
+   }, [])
 
    const api = axios.create({
       baseURL: 'https://pokeapi.co/api/v2/'
    })
 
-   async function searchPokemon(pokemon : any) {
+   async function getPokemon(pokemon: string | number) {
       const APIResponse = await api.get(`pokemon/${pokemon}`);
       if (APIResponse.status === 200) {
-         setPokemonImg(APIResponse['data']['sprites']['other']['official-artwork']['front_default'])
+         const { name, id, types, sprites } = APIResponse.data;
+         const loadPokemon = {
+            name: name,
+            id: id,
+            types: types,
+            sprite: pokemonSp ? sprites['other']['official-artwork']['front_shiny'] : sprites['other']['official-artwork']['front_default']
+         }
+         setPokemonObj(loadPokemon)
       }
    }
 
-   async function getPokemonGen(generationNumber: any) {
-      const APIResponse = await api.get(`/pokemon/?offset=0&limit=${generationNumber}`);
+   async function getPokemonGen(offsetNumber: any, limitNumber: any) {
+      const APIResponse = await api.get(`/pokemon/?offset=${offsetNumber}&limit=${limitNumber}`);
       if (APIResponse.status === 200) {
          const { results } = APIResponse.data
          //"promise.all" é usado quando vc faz varias requisições a API, o "promise.all" só finaliza depois de receber todas as requisições evitanto q as requisiçoes buguem.
-         const loadPokemons : any = await Promise.all(
-            results.map(async (pokemon : Pokemon) => {
+         let loadPokemons: any = await Promise.all(
+            results.map(async (pokemon: PokemonObj) => {
                const { id, types } = await getMoreInfo(pokemon.url)
                return {
                   name: pokemon.name,
@@ -79,62 +88,79 @@ export default function Home() {
       }
    }
 
-   return(
+   //tem q adicionar loading, principálemnte nessa função
+   async function changeSprite() {
+      setPokemonSp(!pokemonSp) 
+      getPokemon(pokemonObj.id)
+   }
+
+   return (
       <Main>
          <Container>
             <ScreenLeft>
-               <PokemonImage src={pokemonImg} />
+               <PokemonImage src={pokemonObj.sprite} />
             </ScreenLeft>
+
+            <Info>
+               {
+                  pokemonObj.id ?
+                     <span className="pokemon-number">{pokemonObj.id} - </span>
+                     :
+                     ""
+               }
+               <span className="pokemon-name">{pokemonObj.name}</span>
+            </Info>
+
+            <Search>
+               <input
+                  type="text"
+                  placeholder="Name or Number"
+                  onChange={e => getPokemon(e.target.value)}
+               />
+            </Search>
+
+            <Buttons>
+               <button onClick={() => getPokemon(pokemonObj.id - 1)} >
+                  &lt;&lt; Prev
+               </button>
+
+               <button onClick={() => getPokemon(pokemonObj.id + 1)} >
+                  Next &gt;&gt;
+               </button>
+            </Buttons>
 
             <ScreenRight>
                {
-                  pokemonArr.map((item : Pokemon) =>
-                     <text>
-                        {item.id},
-                        {item.name},
-                        {item.types[0].type.name},
-                        {item.types.length > 1 ? item.types[1].type.name : ''}
-                     </text>
+                  pokemonArr.map((item: PokemonObj) =>
+                     <button  onClick={() => getPokemon(item.id)}>
+                        <text> {item.id}, </text>
+                        <text> {item.name}, </text>
+                        <Line type={item.types[0].type.name}> 
+                           {item.types[0].type.name}, 
+                        </Line>
+                        <Line type={item.types.length > 1 ? item.types[1].type.name : ''}> 
+                           {item.types.length > 1 ? item.types[1].type.name : ''} 
+                        </Line>
+                     </button>
                   )
                }
             </ScreenRight>
 
-            {/* <h1 className="pokemon-data">
-               {
-                  pokemonNumber !== '' ?
-                     <span className="pokemon-number">{pokemonNumber} - </span>
-                     :
-                     ""
-               }
-               <span className="pokemon-name">{pokemonName}</span>
-            </h1> */}
+            <ButtonGen>
+               <button onClick={() => getPokemonGen(0, 151)}>1</button>
+               <button onClick={() => getPokemonGen(151, 100)}>2</button>
+               <button onClick={() => getPokemonGen(251, 135)}>3</button>
+               <button onClick={() => getPokemonGen(386, 107)}>4</button>
+               <button onClick={() => getPokemonGen(493, 156)}>5</button>
+               <button onClick={() => getPokemonGen(649, 72)}>6</button>
+               <button onClick={() => getPokemonGen(721, 88)}>7</button>
+               <button onClick={() => getPokemonGen(809, 96)}>8</button>
+               <button onClick={() => getPokemonGen(905, 105)}>9</button>
+            </ButtonGen>
 
-            {/* <div className="form">
-               <input
-                  className="search"
-                  placeholder="Name or Number"
-                  onChange={onChangeHandler}
-                  //sempre que vc apeta um botão vc chama o "onKeyDown"
-                  onKeyDown={keyPress}
-               />
-            </div> */}
-            
-
-            {/* não sei exatamente como se usa "arrow function / () =>" mas tive q usar aqui se não a aplicação buga */}
-            {/* <button onClick={() => renderPokemon(search)} className='button-search'>
-                  <img src={lupa} className='lupa-image' alt="lupa" />
-               </button>
-            </div> */}
-
-            {/* <div className="buttons">
-               <button className="button" onClick={anterior} >
-                  &lt;&lt; Prev
-               </button>
-
-               <button className="button" onClick={proximo} >
-                  Next &gt;&gt;
-               </button>
-            </div> */}
+            <ButtonSp>
+               <button onClick={() => changeSprite()}>SP</button>
+            </ButtonSp>
 
             <Image src={background} className='pokedex-image' alt="pokedexBackground" />
          </Container>
