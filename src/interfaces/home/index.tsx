@@ -15,6 +15,7 @@ import {
    ButtonGen,
    ButtonSp
 } from "./styles"
+import { Loading } from "../../components/loading";
 
 type PokemonObj = {
    name: string,
@@ -34,18 +35,24 @@ export default function Home() {
    const [pokemonArr, setPokemonArr] = useState([]);
    const [pokemonObj, setPokemonObj] = useState<PokemonObj>({} as PokemonObj)
    const [pokemonSp, setPokemonSp] = useState(false)
+   const [loading, setLoading] = useState(false)
+   const [loadingGen, setLoadingGen] = useState(false)
 
    //",[]" serve para que o useEffect chame a função apenas uma vez, quando a pagina é aberta.
    useEffect(() => {
       getPokemonGen(0, 151)
-      getPokemon(4)
+      getPokemon(25)
    }, [])
 
    const api = axios.create({
       baseURL: 'https://pokeapi.co/api/v2/'
    })
 
-   async function getPokemon(pokemon: string | number) {
+   async function getPokemon(pokemon: string | number, shiny?: boolean) {
+      if (shiny) {
+         setPokemonSp(!pokemonSp) 
+      }
+      setLoading(true)
       const APIResponse = await api.get(`pokemon/${pokemon}`);
       if (APIResponse.status === 200) {
          const { name, id, types, sprites } = APIResponse.data;
@@ -56,10 +63,12 @@ export default function Home() {
             sprite: pokemonSp ? sprites['other']['official-artwork']['front_shiny'] : sprites['other']['official-artwork']['front_default']
          }
          setPokemonObj(loadPokemon)
+         setLoading(false)
       }
    }
 
    async function getPokemonGen(offsetNumber: any, limitNumber: any) {
+      setLoadingGen(true)
       const APIResponse = await api.get(`/pokemon/?offset=${offsetNumber}&limit=${limitNumber}`);
       if (APIResponse.status === 200) {
          const { results } = APIResponse.data
@@ -75,6 +84,7 @@ export default function Home() {
             })
          )
          setPokemonArr(loadPokemons)
+         setLoadingGen(false)
       }
    }
 
@@ -88,27 +98,26 @@ export default function Home() {
       }
    }
 
-   //tem q adicionar loading, principálemnte nessa função
-   async function changeSprite() {
-      setPokemonSp(!pokemonSp) 
-      getPokemon(pokemonObj.id)
-   }
+   // async function changeSprite() {
+   //    setPokemonSp(!pokemonSp)
+      // getPokemon(pokemonObj.id)
+      // setTimeout(() =>  getPokemon(pokemonObj.id), 2000)
+   // }
 
    return (
       <Main>
          <Container>
             <ScreenLeft>
-               <PokemonImage src={pokemonObj.sprite} />
+               {!loading ?
+                  <PokemonImage src={pokemonObj.sprite} />
+                  :
+                  <Loading/>
+               }
             </ScreenLeft>
 
             <Info>
-               {
-                  pokemonObj.id ?
-                     <span className="pokemon-number">{pokemonObj.id} - </span>
-                     :
-                     ""
-               }
-               <span className="pokemon-name">{pokemonObj.name}</span>
+               {!loading ? <span className="pokemon-number">{pokemonObj.id} - </span> : '-'}
+               {!loading ? <span className="pokemon-name">{pokemonObj.name}</span> : ''}
             </Info>
 
             <Search>
@@ -119,6 +128,7 @@ export default function Home() {
                />
             </Search>
 
+            {/* desabilita os botoes quando tiver em 1 ou no ultimo pokemon, o loading ta dando erro por causa q n tem isso acho    */}
             <Buttons>
                <button onClick={() => getPokemon(pokemonObj.id - 1)} >
                   &lt;&lt; Prev
@@ -130,7 +140,7 @@ export default function Home() {
             </Buttons>
 
             <ScreenRight>
-               {
+               {!loadingGen ?
                   pokemonArr.map((item: PokemonObj) =>
                      <button  onClick={() => getPokemon(item.id)}>
                         <text> {item.id}, </text>
@@ -143,6 +153,8 @@ export default function Home() {
                         </Line>
                      </button>
                   )
+                  :
+                  <Loading/>
                }
             </ScreenRight>
 
@@ -158,8 +170,12 @@ export default function Home() {
                <button onClick={() => getPokemonGen(905, 105)}>9</button>
             </ButtonGen>
 
-            <ButtonSp>
+            {/* <ButtonSp>
                <button onClick={() => changeSprite()}>SP</button>
+            </ButtonSp> */}
+
+            <ButtonSp>
+               <button onClick={() => getPokemon(pokemonObj.id, true)}>SP</button>
             </ButtonSp>
 
             <Image src={background} className='pokedex-image' alt="pokedexBackground" />
