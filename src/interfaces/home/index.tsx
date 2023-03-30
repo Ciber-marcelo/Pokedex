@@ -48,10 +48,7 @@ export default function Home() {
       baseURL: 'https://pokeapi.co/api/v2/'
    })
 
-   async function getPokemon(pokemon: string | number, shiny?: boolean) {
-      if (shiny) {
-         setPokemonSp(!pokemonSp) 
-      }
+   async function getPokemon(pokemon: string | number) {
       setLoading(true)
       const APIResponse = await api.get(`pokemon/${pokemon}`);
       if (APIResponse.status === 200) {
@@ -60,7 +57,7 @@ export default function Home() {
             name: name,
             id: id,
             types: types,
-            sprite: pokemonSp ? sprites['other']['official-artwork']['front_shiny'] : sprites['other']['official-artwork']['front_default']
+            sprite: !pokemonSp ? sprites['other']['official-artwork']['front_default'] : sprites['other']['official-artwork']['front_shiny']
          }
          setPokemonObj(loadPokemon)
          setLoading(false)
@@ -98,11 +95,11 @@ export default function Home() {
       }
    }
 
-   // async function changeSprite() {
-   //    setPokemonSp(!pokemonSp)
+   function changeSprite() {
+      setPokemonSp(!pokemonSp)
       // getPokemon(pokemonObj.id)
       // setTimeout(() =>  getPokemon(pokemonObj.id), 2000)
-   // }
+   }
 
    return (
       <Main>
@@ -111,7 +108,7 @@ export default function Home() {
                {!loading ?
                   <PokemonImage src={pokemonObj.sprite} />
                   :
-                  <Loading/>
+                  <Loading />
                }
             </ScreenLeft>
 
@@ -142,19 +139,19 @@ export default function Home() {
             <ScreenRight>
                {!loadingGen ?
                   pokemonArr.map((item: PokemonObj) =>
-                     <button  onClick={() => getPokemon(item.id)}>
+                     <button onClick={() => getPokemon(item.id)}>
                         <text> {item.id}, </text>
                         <text> {item.name}, </text>
-                        <Line type={item.types[0].type.name}> 
-                           {item.types[0].type.name}, 
+                        <Line type={item.types[0].type.name}>
+                           {item.types[0].type.name},
                         </Line>
-                        <Line type={item.types.length > 1 ? item.types[1].type.name : ''}> 
-                           {item.types.length > 1 ? item.types[1].type.name : ''} 
+                        <Line type={item.types.length > 1 ? item.types[1].type.name : ''}>
+                           {item.types.length > 1 ? item.types[1].type.name : ''}
                         </Line>
                      </button>
                   )
                   :
-                  <Loading/>
+                  <Loading />
                }
             </ScreenRight>
 
@@ -170,12 +167,8 @@ export default function Home() {
                <button onClick={() => getPokemonGen(905, 105)}>9</button>
             </ButtonGen>
 
-            {/* <ButtonSp>
-               <button onClick={() => changeSprite()}>SP</button>
-            </ButtonSp> */}
-
             <ButtonSp>
-               <button onClick={() => getPokemon(pokemonObj.id, true)}>SP</button>
+               <button onClick={() => changeSprite()}>SP</button>
             </ButtonSp>
 
             <Image src={background} className='pokedex-image' alt="pokedexBackground" />
