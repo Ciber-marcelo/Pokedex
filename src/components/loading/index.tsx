@@ -1,10 +1,10 @@
-import circle from "../../assets/circle.png"
+import loading from "../../assets/loading.gif"
 import { Container, Image } from "./styles"
 
 export function Loading() {
     return (
         <Container>
-            <Image src={circle} alt="Loading" />
+            <Image src={loading} alt="Loading" />
         </Container>
     )
 }
