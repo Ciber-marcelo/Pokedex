@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import theme  from '../../global/theme'
 
-type PokemonType = {
-   type: string
-}
+// USA REM EM VEZ DE PX, nos textos e tamanhos(width e height) de div por createExternalModuleExport
+// borda e outras coisas faz com px mesmo q é bem melhor
 
 type genButtom = {
    active: boolean
@@ -136,14 +134,6 @@ export const ScreenRight = styled.div`
    gap: 5px;
    padding: 2px;
 
-   button {
-      display: flex;
-      padding: 8px;
-      background-color: #fff;
-      border: 3.5px solid #4E4E4E;
-      border-radius: 5px;
-   }
-
    //estilizações da scrollbar, link de referencia: https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp
    ::-webkit-scrollbar {
       width: 10px;
@@ -164,16 +154,6 @@ export const ScreenRight = styled.div`
    ::-webkit-scrollbar-thumb:hover {
       background: lightgray;
    }
-`;
-
-export const Line = styled.div<PokemonType>`
-   //"as" ser para usar as tags "...of", da uma pesquisada depois pra entender melhor
-   //na parte do "({type})" vc esta usando desestruturação, normalmente seria "props.type"
-   background: ${({type}) => theme.typesColor[type as keyof typeof theme.typesColor] };
-   border: 2.5px solid #4E4E4E;
-   border-radius: 5px;
-   padding: 2px;
-   color: #fff;
 `;
 
 export const ButtonsGen = styled.div`

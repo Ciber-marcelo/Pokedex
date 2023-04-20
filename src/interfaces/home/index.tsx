@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import background from '../../assets/background.png'
-import api  from '../../services/api'
+import api from '../../services/api'
 import { gens } from '../../global/gens'
 import {
    Main,
@@ -12,12 +12,12 @@ import {
    Info,
    Search,
    Buttons,
-   Line,
    ButtonsGen,
    ButtonGen,
    ButtonSp
 } from "./styles"
 import { Loading } from "../../components/loading";
+import { ButtonPokemon } from "../../components/buttonPokemon"
 
 type PokemonObj = {
    name: string,
@@ -159,16 +159,13 @@ export default function Home() {
             <ScreenRight>
                {!loadingGen ?
                   pokemonArr.map((item: PokemonObj) =>
-                     <button onClick={() => getPokemon(item.id)}>
-                        <text> {item.id} </text>
-                        <text> {item.name} </text>
-                        <Line type={item.types[0].type.name}>
-                           {item.types[0].type.name}
-                        </Line>
-                        <Line type={item.types.length > 1 ? item.types[1].type.name : ''}>
-                           {item.types.length > 1 ? item.types[1].type.name : ''}
-                        </Line>
-                     </button>
+                     <ButtonPokemon
+                        onClick={() => getPokemon(item.id)}
+                        number={item.id}
+                        name={item.name}
+                        type={item.types[0].type.name}
+                        type2={item.types.length > 1 ? item.types[1].type.name : null}
+                     />
                   )
                   :
                   <Loading />
