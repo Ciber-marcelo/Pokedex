@@ -136,7 +136,7 @@ export const ScreenRight = styled.div`
 
    //estilizações da scrollbar, link de referencia: https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp
    ::-webkit-scrollbar {
-      width: 10px;
+      width: 12px;
    }
 
    ::-webkit-scrollbar-track {
@@ -147,7 +147,9 @@ export const ScreenRight = styled.div`
 
    ::-webkit-scrollbar-thumb {
       background: #888;
-      border-radius: 10px;
+      border-left: 3px solid #4E4E4E;
+      margin: 5px;
+      border-radius: 5px;
       height: 20% ;
    }
 
