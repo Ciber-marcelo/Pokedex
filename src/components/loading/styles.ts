@@ -9,5 +9,5 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
-   width: 50px;
+   width: 3rem;
 `;

@@ -1,11 +1,4 @@
 const theme = {
-   colors: {
-      background: '#FFFFFF',
-      backgroundGray: '#F2F2F2',
-      text_white: '#FFFFFF',
-      text_gray: '#747476',
-      text_light: 'rgba(23, 23, 27, 0.6)',
-   },
    typesColor: {
          bug: '#8CB330',
          dark: '#58575F',
