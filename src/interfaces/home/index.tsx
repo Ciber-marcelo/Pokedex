@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import background from '../../assets/background.png'
-import axios from 'axios';
+import api  from '../../services/api'
+import { gens } from '../../global/gens'
 import {
    Main,
    Container,
@@ -12,6 +13,7 @@ import {
    Search,
    Buttons,
    Line,
+   ButtonsGen,
    ButtonGen,
    ButtonSp
 } from "./styles"
@@ -31,22 +33,30 @@ type PokemonType = {
    }
 }
 
+type genType = {
+   id: number,
+   name: string,
+   offSet: number,
+   limit: number
+}
+
 export default function Home() {
+   const [pokemonObj, setPokemonObj] = useState<PokemonObj>({ id: 25 } as PokemonObj)
    const [pokemonArr, setPokemonArr] = useState([]);
-   const [pokemonObj, setPokemonObj] = useState<PokemonObj>({} as PokemonObj)
-   const [pokemonSp, setPokemonSp] = useState(false)
+   const [shiny, setShiny] = useState(false)
    const [loading, setLoading] = useState(false)
    const [loadingGen, setLoadingGen] = useState(false)
+   const [active, setActive] = useState(gens[0]);
 
-   //",[]" serve para que o useEffect chame a função apenas uma vez, quando a pagina é aberta.
+   //colocar o "[]" vazio serve para que o useEffect chame a função apenas uma vez, quando a pagina é aberta.
    useEffect(() => {
       getPokemonGen(0, 151)
-      getPokemon(25)
    }, [])
 
-   const api = axios.create({
-      baseURL: 'https://pokeapi.co/api/v2/'
-   })
+   //se colocar uma varialvel dentro de "[]", o useEffect será chamado sempre que essa variavel tiver seu estado alterado
+   useEffect(() => {
+      getPokemon(pokemonObj.id)
+   }, [shiny])
 
    async function getPokemon(pokemon: string | number) {
       setLoading(true)
@@ -57,7 +67,7 @@ export default function Home() {
             name: name,
             id: id,
             types: types,
-            sprite: !pokemonSp ? sprites['other']['official-artwork']['front_default'] : sprites['other']['official-artwork']['front_shiny']
+            sprite: !shiny ? sprites['other']['official-artwork']['front_default'] : sprites['other']['official-artwork']['front_shiny']
          }
          setPokemonObj(loadPokemon)
          setLoading(false)
@@ -95,9 +105,9 @@ export default function Home() {
       }
    }
 
-   function changeSprite() {
-      setPokemonSp(!pokemonSp)
-      // getPokemon(pokemonObj.id)
+   function handleButtonGen(gen: any) {
+      setActive(gen)
+      getPokemonGen(gen.offSet, gen.limit)
       // setTimeout(() =>  getPokemon(pokemonObj.id), 2000)
    }
 
@@ -106,7 +116,7 @@ export default function Home() {
          <Container>
             <ScreenLeft>
                {!loading ?
-                  <PokemonImage src={pokemonObj.sprite} />
+                  <PokemonImage src={pokemonObj.sprite ? pokemonObj.sprite : 'https://static.vecteezy.com/system/resources/previews/001/200/172/non_2x/x-png.png'} />
                   :
                   <Loading />
                }
@@ -125,25 +135,35 @@ export default function Home() {
                />
             </Search>
 
-            {/* desabilita os botoes quando tiver em 1 ou no ultimo pokemon, o loading ta dando erro por causa q n tem isso acho    */}
             <Buttons>
-               <button onClick={() => getPokemon(pokemonObj.id - 1)} >
-                  &lt;&lt; Prev
-               </button>
-
-               <button onClick={() => getPokemon(pokemonObj.id + 1)} >
-                  Next &gt;&gt;
-               </button>
+               {pokemonObj.id === 1 ?
+                  <button className="buttonOff">
+                     &lt;&lt; Prev
+                  </button>
+                  :
+                  <button className="buttonOn" onClick={() => getPokemon(pokemonObj.id - 1)} >
+                     &lt;&lt; Prev
+                  </button>
+               }
+               {pokemonObj.id === 1010 ?
+                  <button className="buttonOff">
+                     Next &gt;&gt;
+                  </button>
+                  :
+                  <button className="buttonOn" onClick={() => getPokemon(pokemonObj.id + 1)} >
+                     Next &gt;&gt;
+                  </button>
+               }
             </Buttons>
 
             <ScreenRight>
                {!loadingGen ?
                   pokemonArr.map((item: PokemonObj) =>
                      <button onClick={() => getPokemon(item.id)}>
-                        <text> {item.id}, </text>
-                        <text> {item.name}, </text>
+                        <text> {item.id} </text>
+                        <text> {item.name} </text>
                         <Line type={item.types[0].type.name}>
-                           {item.types[0].type.name},
+                           {item.types[0].type.name}
                         </Line>
                         <Line type={item.types.length > 1 ? item.types[1].type.name : ''}>
                            {item.types.length > 1 ? item.types[1].type.name : ''}
@@ -155,20 +175,16 @@ export default function Home() {
                }
             </ScreenRight>
 
-            <ButtonGen>
-               <button onClick={() => getPokemonGen(0, 151)}>1</button>
-               <button onClick={() => getPokemonGen(151, 100)}>2</button>
-               <button onClick={() => getPokemonGen(251, 135)}>3</button>
-               <button onClick={() => getPokemonGen(386, 107)}>4</button>
-               <button onClick={() => getPokemonGen(493, 156)}>5</button>
-               <button onClick={() => getPokemonGen(649, 72)}>6</button>
-               <button onClick={() => getPokemonGen(721, 88)}>7</button>
-               <button onClick={() => getPokemonGen(809, 96)}>8</button>
-               <button onClick={() => getPokemonGen(905, 105)}>9</button>
-            </ButtonGen>
+            <ButtonsGen>
+               {gens.map((gen: genType) => (
+                  <ButtonGen active={active === gen} onClick={() => handleButtonGen(gen)}>
+                     {gen.id}
+                  </ButtonGen>
+               ))}
+            </ButtonsGen>
 
             <ButtonSp>
-               <button onClick={() => changeSprite()}>SP</button>
+               <button onClick={() => setShiny(!shiny)}>SP</button>
             </ButtonSp>
 
             <Image src={background} className='pokedex-image' alt="pokedexBackground" />

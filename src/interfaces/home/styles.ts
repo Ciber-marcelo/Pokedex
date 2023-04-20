@@ -1,8 +1,12 @@
 import styled from 'styled-components';
-import theme from '../../global/theme'
+import theme  from '../../global/theme'
 
 type PokemonType = {
    type: string
+}
+
+type genButtom = {
+   active: boolean
 }
 
 export const Main = styled.div`
@@ -17,7 +21,6 @@ export const Container = styled.div`
    /* "position: relative" serve para que os itens dentro dessa tag com a propriedade "position: absolute" não saiam de dentro dela */
    position: relative;
    display: flex;
-   /* background-color: red; */
 `;
 
 export const Image = styled.img`
@@ -37,7 +40,6 @@ export const ScreenLeft = styled.div`
    background-color: #fff;
    bottom: 34.5%;
    left: 4%;
-
    display: flex;
    align-items: center;
    justify-content: center;
@@ -46,23 +48,22 @@ export const ScreenLeft = styled.div`
 export const PokemonImage = styled.img`
     position: absolute;
     height: 95%;
-    /* background-color: red; */
 `
 
 export const Info = styled.text`
    position: absolute;
    width: 39.4%;
    height: 5%;
-   /* border: 1px solid #4E4E4E; */
+   border: 3.5px solid #4E4E4E;
+   border-top: 0px;
    border-bottom-right-radius: 10px;
    border-bottom-left-radius: 10px;
    left: 4%;
    bottom: 29.5%;
    /* padding: 0.5%; */
-   background-color: #4E4E4E;
-
+   background-color: rgb(49, 49, 49);
    text-transform: capitalize;
-   font-size: 16px;
+   font-size: 1rem;
    text-align: center;
    color: white;
 `
@@ -73,8 +74,6 @@ export const Search = styled.div`
    width: 39.4%;
    left: 4%;
    bottom: 19%;
-   /* "gap" foi usado aqui para dar espaço entre os botoes */
-   gap: 5px;
 
    input {
       width: 100%;
@@ -83,8 +82,7 @@ export const Search = styled.div`
       outline: none;
       border: 3.5px solid #4E4E4E;
       border-radius: 10px;
-
-      font-size: 16px;
+      font-size: 1rem;
       color: #4E4E4E;
    }
 `
@@ -96,22 +94,33 @@ export const Buttons = styled.div`
    display: flex;
    gap: 15px;
 
-   button {
+   .buttonOn {
       width: 50%;
       padding: 3%;
       border: 3.5px solid #4E4E4E;
       border-radius: 10px;
       background-color: rgb(49, 49, 49);
-      font-size: 16px;
+      font-size: 1rem;
       color: #fff;
    }
 
-   button:active {
+   .buttonOn:active {
        background-color: #4E4E4E;
    }
+
+   .buttonOff {
+      width: 50%;
+      padding: 3%;
+      border: 3.5px solid #4E4E4E;
+      border-radius: 10px;
+      background-color: rgb(49, 49, 49);
+      opacity: 0.8;
+      font-size: 1rem;
+      color: #fff;
+   }   
 `
 export const ScreenRight = styled.div`
-   //"overflow-y" serve para os item destro da tive ficarem dentro dela e caso n cabão, aparece um scroll na vertical, para um scroll orizontal só colocar "x" em vez de "y"
+   //"overflow-y" serve para os item dentro da dive ficarem dentro dela e caso n cabão, aparece um scroll na vertical, para um scroll orizontal só colocar "x" em vez de "y"
    overflow-y: auto;
    position: absolute;
    width: 39.4%;
@@ -124,10 +133,15 @@ export const ScreenRight = styled.div`
    left: 54.5%;
    display: flex;
    flex-direction: column;
-   padding: 3px;
+   gap: 5px;
+   padding: 2px;
 
    button {
       display: flex;
+      padding: 8px;
+      background-color: #fff;
+      border: 3.5px solid #4E4E4E;
+      border-radius: 5px;
    }
 
    //estilizações da scrollbar, link de referencia: https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp
@@ -136,7 +150,6 @@ export const ScreenRight = styled.div`
    }
 
    ::-webkit-scrollbar-track {
-      /* background: #f1f1f1; */
       background: #4E4E4E;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
@@ -149,7 +162,6 @@ export const ScreenRight = styled.div`
    }
 
    ::-webkit-scrollbar-thumb:hover {
-      /* background: #555;  */
       background: lightgray;
    }
 `;
@@ -157,32 +169,37 @@ export const ScreenRight = styled.div`
 export const Line = styled.div<PokemonType>`
    //"as" ser para usar as tags "...of", da uma pesquisada depois pra entender melhor
    //na parte do "({type})" vc esta usando desestruturação, normalmente seria "props.type"
-   background: ${({type}) => theme.typesColor[type as keyof typeof theme.typesColor] }
+   background: ${({type}) => theme.typesColor[type as keyof typeof theme.typesColor] };
+   border: 2.5px solid #4E4E4E;
+   border-radius: 5px;
+   padding: 2px;
+   color: #fff;
 `;
 
-export const ButtonGen = styled.div`
+export const ButtonsGen = styled.div`
    display: flex;
    width: 39.4%;
    position: absolute;
    bottom: 8.5%;
    left: 54.5%;   
-   /* background-color: green; */
    justify-content: space-between;
 
-   button {
-      /* padding: 1%; */                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-      width: 25px;
-      height: 25px;
-      border: 2px solid #4E4E4E;
-      border-radius: 25px;
-      background-color: rgb(49, 49, 49);
-      font-size: 1rem;
-      color: #fff;
-   }
-   
    button:active {
        background-color: #4E4E4E;
    }
+`;
+
+export const ButtonGen = styled.button<genButtom>`
+   display: flex;
+   width: 25px;
+   height: 25px;
+   justify-content: center;
+   border: 3.5px solid #4E4E4E;
+   border-radius: 25px;
+   background-color: rgb(49, 49, 49);
+   ${({ active }) => active && ` background-color: #4E4E4E; `}
+   font-size: 1rem;
+   color: #fff;
 `;
 
 export const ButtonSp = styled.div`
