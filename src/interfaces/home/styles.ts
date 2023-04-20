@@ -183,21 +183,12 @@ export const ButtonGen = styled.button<genButtom>`
 `;
 
 export const ButtonSp = styled.div`
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 62px;
+   height: 62px;
    position: absolute;
-   bottom: 90%;
-   left: 6%;   
-   background-color: green;
-
-   button {
-      /* padding: 1%; */
-      border: 3.5px solid #4E4E4E;
-      border-radius: 25px;
-      background-color: rgb(49, 49, 49);
-      font-size: 1rem;
-      color: #fff;
-   }
-   
-   button:active {
-       background-color: #4E4E4E;
-   }
+   bottom: 84.85%;
+   left: 2%;   
 `;

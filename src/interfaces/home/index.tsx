@@ -18,6 +18,7 @@ import {
 } from "./styles"
 import { Loading } from "../../components/loading";
 import { ButtonPokemon } from "../../components/buttonPokemon"
+import { ButtonShiny } from "../../components/buttonShiny";
 
 type PokemonObj = {
    name: string,
@@ -181,7 +182,7 @@ export default function Home() {
             </ButtonsGen>
 
             <ButtonSp>
-               <button onClick={() => setShiny(!shiny)}>SP</button>
+               <ButtonShiny onClick={() => setShiny(!shiny)}/>
             </ButtonSp>
 
             <Image src={background} className='pokedex-image' alt="pokedexBackground" />
