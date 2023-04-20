@@ -179,6 +179,7 @@ export const ButtonGen = styled.button<genButtom>`
    background-color: rgb(49, 49, 49);
    ${({ active }) => active && ` background-color: #4E4E4E; `}
    font-size: 1rem;
+   
    color: #fff;
 `;
 
