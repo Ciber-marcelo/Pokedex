@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-   width: 62px;
-   height: 62px;
+   width: 100%;
+   height: 100%;
    border: 7px solid #4E4E4E;
    border-radius: 45px;
    background-color: rgba(8, 164, 189, 1);
    cursor: pointer;
 
    animation-name: piscar;
-   animation-duration: 4s;
+   animation-duration: 3s;
    animation-iteration-count: infinite;
 
    @keyframes piscar {
@@ -25,7 +25,7 @@ export const Button = styled.button`
    }
 
    &:active{
-      width: 58px;
-      height: 58px;
+      width: 90%;
+      height: 90%;
    }
 `;

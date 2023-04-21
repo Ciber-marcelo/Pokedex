@@ -188,9 +188,9 @@ export const ButtonSp = styled.div`
    display: flex;
    justify-content: center;
    align-items: center;
-   width: 62px;
-   height: 62px;
+   width: 8.8%;
+   height: 12%;
    position: absolute;
-   bottom: 84.85%;
-   left: 2%;   
+   bottom: 85%;
+   left: 2.1%;   
 `;
