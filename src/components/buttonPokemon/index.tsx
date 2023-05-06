@@ -2,10 +2,10 @@
 import { ButtonPok, NumberPok, NamePok, TypePok, TypeContainer } from "./styles"
 
 type Props = {
-    number: any
-    name: any
-    type: any
-    type2: any
+    number: number
+    name: string
+    type: string
+    type2: string | null
     onClick: any
 }
 

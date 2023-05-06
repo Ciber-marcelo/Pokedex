@@ -8,8 +8,8 @@ type PokemonType = {
 export const ButtonPok = styled.button`
     display: flex;
     align-items: center;
-    background-color: #fff;
-    border: 3.5px solid #4E4E4E;
+    background-color: ${theme.colors.white};
+    border: 3.5px solid ${theme.colors.gray1};
     border-radius: 5px;
 
     :active{
@@ -23,13 +23,14 @@ export const NumberPok = styled.text`
    align-items: center;
    width: 2.1rem;
    height: 1.8rem;
-   border-right: 3.5px solid #4E4E4E;
-   background-color: #4E4E4E;
+   border-right: 3.5px solid ${theme.colors.gray1};
+   background-color: ${theme.colors.black};
 
-   font-size: 0.75rem;
+   font-size: 0.625rem;
+   /* font-size: clamp(0.25rem, 1vw, 0.625rem); */
    font-weight: bold;
    text-transform: uppercase;
-   color: #fff;
+   color: ${theme.colors.white};
 `;
 
 export const NamePok = styled.text`
@@ -40,19 +41,18 @@ export const NamePok = styled.text`
    height: 1.8rem;
    padding-left: 5px;
 
-   /* font-size: 0.625rem; */
-   font-size: clamp(0.5rem, 1vw, 0.625rem);
+   font-size: 0.625rem;
+   /* font-size: clamp(0.25rem, 1vw, 0.625rem); */
    font-weight: bold;
    text-transform: uppercase;
-   color: #4E4E4E;
+   color: ${theme.colors.gray1};
 `;
 
 export const TypeContainer = styled.text`
    display: flex;
    justify-content: end;
    align-items: center;
-   /* width: 7.5rem; */
-   width: 50%;
+   width: 7.5rem;
    height: 1.8rem;
    gap: 5px;
 `;
@@ -64,15 +64,14 @@ export const TypePok = styled.div<PokemonType>`
    display: flex;
    justify-content: center;
    align-items: center;
-   /* width: 3.4rem; */
-   width: 50%;
+   width: 3.4rem;
    height: 1.6rem;
-   border: 2.5px solid #4E4E4E;
+   border: 2.5px solid ${theme.colors.gray1};
    border-radius: 15px;
 
-   /* font-size: 0.625rem; */
-   font-size: clamp(0.25rem, 1vw, 0.625rem);
+   font-size: 0.625rem;
+   /* font-size: clamp(0.25rem, 1vw, 0.625rem); */
    font-weight: bold;
    text-transform: uppercase;
-   color: #fff;
+   color: ${theme.colors.white};
 `;
