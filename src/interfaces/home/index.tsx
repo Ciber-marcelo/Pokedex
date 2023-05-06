@@ -5,20 +5,22 @@ import { gens } from '../../global/gens'
 import {
    Main,
    Container,
-   Image,
+   Background,
    ScreenLeft,
    ScreenRight,
    PokemonImage,
    Info,
-   Search,
-   Buttons,
-   ButtonsGen,
+   ContainerSearch,
+   ContainerPrevNext,
+   ContainerGen,
    ButtonGen,
-   ButtonSp
+   ContainerShiny
 } from "./styles"
 import { Loading } from "../../components/loading";
 import { ButtonPokemon } from "../../components/buttonPokemon"
 import { ButtonShiny } from "../../components/buttonShiny";
+import { ButtonsPrevNext } from "../../components/buttonsPrevNext";
+import { InputSearch } from "../../components/inputSearch";
 
 type PokemonObj = {
    name: string,
@@ -128,34 +130,18 @@ export default function Home() {
                {!loading ? <span className="pokemon-name">{pokemonObj.name}</span> : ''}
             </Info>
 
-            <Search>
-               <input
-                  type="text"
-                  placeholder="Name or Number"
-                  onChange={e => getPokemon(e.target.value.toLowerCase())}
+            <ContainerSearch>
+               <InputSearch 
+                  onChange={(e: any) => getPokemon(e.target.value.toLowerCase())}
                />
-            </Search>
+            </ContainerSearch>
 
-            <Buttons>
-               {pokemonObj.id === 1 ?
-                  <button className="buttonOff">
-                     &lt;&lt; Prev
-                  </button>
-                  :
-                  <button className="buttonOn" onClick={() => getPokemon(pokemonObj.id - 1)} >
-                     &lt;&lt; Prev
-                  </button>
-               }
-               {pokemonObj.id === 1010 ?
-                  <button className="buttonOff">
-                     Next &gt;&gt;
-                  </button>
-                  :
-                  <button className="buttonOn" onClick={() => getPokemon(pokemonObj.id + 1)} >
-                     Next &gt;&gt;
-                  </button>
-               }
-            </Buttons>
+            <ContainerPrevNext>
+               <ButtonsPrevNext
+                  onClick={() => getPokemon(pokemonObj.id - 1)}
+                  pokemonId={pokemonObj.id}
+               />
+            </ContainerPrevNext>
 
             <ScreenRight>
                {!loadingGen ?
@@ -173,19 +159,19 @@ export default function Home() {
                }
             </ScreenRight>
 
-            <ButtonsGen>
+            <ContainerGen>
                {gens.map((gen: genType) => (
                   <ButtonGen active={active === gen} onClick={() => handleButtonGen(gen)}>
                      {gen.id}
                   </ButtonGen>
                ))}
-            </ButtonsGen>
+            </ContainerGen>
 
-            <ButtonSp>
-               <ButtonShiny onClick={() => setShiny(!shiny)}/>
-            </ButtonSp>
+            <ContainerShiny>
+               <ButtonShiny onClick={() => setShiny(!shiny)} />
+            </ContainerShiny>
 
-            <Image src={background} className='pokedex-image' alt="pokedexBackground" />
+            <Background src={background} className='pokedex-image' alt="pokedexBackground" />
          </Container>
       </Main>
    );

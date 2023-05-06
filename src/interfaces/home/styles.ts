@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../../global/theme'
 
 // USA REM EM VEZ DE PX, nos textos e tamanhos(width e height) de div por createExternalModuleExport
 // borda e outras coisas faz com px mesmo q é bem melhor
@@ -8,7 +9,7 @@ type genButtom = {
 }
 
 export const Main = styled.div`
-   background-color: rgb(53, 194, 255, 1);
+   background-color: ${theme.colors.background};
    display: flex;
    height: 100vh;
    align-items: center;
@@ -21,21 +22,22 @@ export const Container = styled.div`
    display: flex;
 `;
 
-export const Image = styled.img`
+export const Background = styled.img`
    width: 100%;
-   max-width: 700px;
+   min-width: 43.75rem;
+   max-width: 43.75rem;
 `;
 
 export const ScreenLeft = styled.div`
    position: absolute;
-   width: 39.4%;
-   height: 43.55%;
-   border: 3.5px solid #4E4E4E;
+   width: 17.25rem;
+   height: 13.75rem;
+   border: 3.5px solid ${theme.colors.gray1};
    //"box-sizing: border-box" serve para fazer a borda ficar pro lado de dentro
    box-sizing: border-box;
    border-top-right-radius: 10px;
    border-top-left-radius: 10px;
-   background-color: #fff;
+   background-color: ${theme.colors.white};
    bottom: 34.5%;
    left: 4%;
    display: flex;
@@ -52,21 +54,21 @@ export const Info = styled.text`
    position: absolute;
    width: 39.4%;
    height: 5%;
-   border: 3.5px solid #4E4E4E;
+   border: 3.5px solid ${theme.colors.gray1};
    border-top: 0px;
    border-bottom-right-radius: 10px;
    border-bottom-left-radius: 10px;
    left: 4%;
    bottom: 29.5%;
    /* padding: 0.5%; */
-   background-color: rgb(49, 49, 49);
+   background-color: ${theme.colors.black};
    text-transform: capitalize;
    font-size: 1rem;
    text-align: center;
    color: white;
 `
 
-export const Search = styled.div`
+export const ContainerSearch = styled.div`
    display: flex;
    position: absolute;
    width: 39.4%;
@@ -78,55 +80,30 @@ export const Search = styled.div`
       padding: 3%;
       /* "outline: none;" serve para tirar a borda quando se clica no input */
       outline: none;
-      border: 3.5px solid #4E4E4E;
+      border: 3.5px solid ${theme.colors.gray1};
       border-radius: 10px;
       font-size: 1rem;
-      color: #4E4E4E;
+      color: ${theme.colors.gray1};
    }
 `
-export const Buttons = styled.div`
+export const ContainerPrevNext = styled.div`
    position: absolute;
-   width: 39.4%;
+   width: 17.25rem;
    bottom: 8.5%;
    left: 4%;
    display: flex;
    gap: 15px;
-
-   .buttonOn {
-      width: 50%;
-      padding: 3%;
-      border: 3.5px solid #4E4E4E;
-      border-radius: 10px;
-      background-color: rgb(49, 49, 49);
-      font-size: 1rem;
-      color: #fff;
-   }
-
-   .buttonOn:active {
-       background-color: #4E4E4E;
-   }
-
-   .buttonOff {
-      width: 50%;
-      padding: 3%;
-      border: 3.5px solid #4E4E4E;
-      border-radius: 10px;
-      background-color: rgb(49, 49, 49);
-      opacity: 0.8;
-      font-size: 1rem;
-      color: #fff;
-   }   
 `
 export const ScreenRight = styled.div`
    //"overflow-y" serve para os item dentro da dive ficarem dentro dela e caso n cabão, aparece um scroll na vertical, para um scroll orizontal só colocar "x" em vez de "y"
    overflow-y: auto;
    position: absolute;
-   width: 39.4%;
-   height: 62%;
-   border: 3.5px solid #4E4E4E;
+   width: 17.25rem;
+   height: 19.5rem;
+   border: 3.5px solid ${theme.colors.gray1};
    box-sizing: border-box;
    border-radius: 10px;
-   background-color: #fff;
+   background-color: ${theme.colors.white};
    bottom: 16.05%;
    left: 54.5%;
    display: flex;
@@ -140,25 +117,25 @@ export const ScreenRight = styled.div`
    }
 
    ::-webkit-scrollbar-track {
-      background: #4E4E4E;
+      background: ${theme.colors.gray1};
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
    }
 
    ::-webkit-scrollbar-thumb {
-      background: #888;
-      border-left: 3px solid #4E4E4E;
+      background: ${theme.colors.gray2};
+      border-left: 3px solid ${theme.colors.gray1};
       margin: 5px;
       border-radius: 5px;
       height: 20% ;
    }
 
-   ::-webkit-scrollbar-thumb:hover {
-      background: lightgray;
+   ::-webkit-scrollbar-thumb:active {
+      background: ${theme.colors.black};
    }
 `;
 
-export const ButtonsGen = styled.div`
+export const ContainerGen = styled.div`
    display: flex;
    width: 39.4%;
    position: absolute;
@@ -167,7 +144,7 @@ export const ButtonsGen = styled.div`
    justify-content: space-between;
 
    button:active {
-       background-color: #4E4E4E;
+       background-color: ${theme.colors.gray1};
    }
 `;
 
@@ -176,15 +153,15 @@ export const ButtonGen = styled.button<genButtom>`
    width: 25px;
    height: 25px;
    justify-content: center;
-   border: 3.5px solid #4E4E4E;
+   border: 3.5px solid ${theme.colors.gray1};
    border-radius: 25px;
-   background-color: rgb(49, 49, 49);
-   ${({ active }) => active && ` background-color: #4E4E4E; `}
+   background-color: ${theme.colors.black};
+   ${({ active }) => active && ` background-color: ${theme.colors.gray1}; `}
    font-size: 1rem;
-   color: #fff;
+   color: ${theme.colors.white};
 `;
 
-export const ButtonSp = styled.div`
+export const ContainerShiny = styled.div`
    display: flex;
    justify-content: center;
    align-items: center;
