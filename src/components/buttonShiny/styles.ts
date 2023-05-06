@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import theme from '../../global/theme';
 
 export const Button = styled.button`
    width: 100%;
    height: 100%;
-   border: 7px solid #4E4E4E;
+   border: 7px solid ${theme.colors.gray1};
    border-radius: 45px;
    background-color: rgba(8, 164, 189, 1);
    cursor: pointer;
