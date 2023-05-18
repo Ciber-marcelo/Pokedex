@@ -1,11 +1,12 @@
 import { Container } from "./styles"
 
 type Props = {
-    onClick: any
+    onClickPrev: any
+    onClickNext: any
     pokemonId: number
 }
 
-export function ButtonsPrevNext({ onClick, pokemonId }: Props) {
+export function ButtonsPrevNext({ onClickPrev, onClickNext, pokemonId }: Props) {
     return (
         <Container>
             {pokemonId === 1 ?
@@ -13,7 +14,7 @@ export function ButtonsPrevNext({ onClick, pokemonId }: Props) {
                     &lt;&lt; Prev
                 </button>
                 :
-                <button className="buttonOn" onClick={onClick} >
+                <button className="buttonOn" onClick={onClickPrev} >
                     &lt;&lt; Prev
                 </button>
             }
@@ -22,7 +23,7 @@ export function ButtonsPrevNext({ onClick, pokemonId }: Props) {
                     Next &gt;&gt;
                 </button>
                 :
-                <button className="buttonOn" onClick={onClick} >
+                <button className="buttonOn" onClick={onClickNext} >
                     Next &gt;&gt;
                 </button>
             }
