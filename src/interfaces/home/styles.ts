@@ -94,6 +94,28 @@ export const ContainerPrevNext = styled.div`
    display: flex;
    gap: 15px;
 `
+
+export const Generation = styled.div`
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 4.4rem;
+   height: 1.8rem;
+   background-color: ${theme.colors.black};
+   border-top: 3.5px solid ${theme.colors.gray1};
+   border-left: 3.5px solid ${theme.colors.gray1};
+   border-right: 3.5px solid ${theme.colors.gray1};
+   border-radius: 10px 10px 0 0;
+   position: absolute;
+   bottom: 78%;
+   left: 54.5%;
+
+   font-size: 0.75rem;
+   font-weight: bold;
+   text-transform: uppercase;
+   color: ${theme.colors.white};
+`
+
 export const ScreenRight = styled.div`
    //"overflow-y" serve para os item dentro da dive ficarem dentro dela e caso n cabão, aparece um scroll na vertical, para um scroll orizontal só colocar "x" em vez de "y"
    overflow-y: auto;
@@ -102,7 +124,7 @@ export const ScreenRight = styled.div`
    height: 19.5rem;
    border: 3.5px solid ${theme.colors.gray1};
    box-sizing: border-box;
-   border-radius: 10px;
+   border-radius: 0 10px 10px 10px;
    background-color: ${theme.colors.white};
    bottom: 16.05%;
    left: 54.5%;

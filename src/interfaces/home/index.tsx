@@ -14,7 +14,8 @@ import {
    ContainerPrevNext,
    ContainerGen,
    ButtonGen,
-   ContainerShiny
+   ContainerShiny,
+   Generation
 } from "./styles"
 import { Loading } from "../../components/loading";
 import { ButtonPokemon } from "../../components/buttonPokemon"
@@ -138,7 +139,8 @@ export default function Home() {
 
             <ContainerPrevNext>
                <ButtonsPrevNext
-                  onClick={() => getPokemon(pokemonObj.id - 1)}
+                  onClickPrev={() => getPokemon(pokemonObj.id - 1)}
+                  onClickNext={() => getPokemon(pokemonObj.id + 1)}
                   pokemonId={pokemonObj.id}
                />
             </ContainerPrevNext>
@@ -158,6 +160,10 @@ export default function Home() {
                   <Loading />
                }
             </ScreenRight>
+
+            <Generation>
+               <text>{active.name}</text>
+            </Generation>
 
             <ContainerGen>
                {gens.map((gen: genType) => (
