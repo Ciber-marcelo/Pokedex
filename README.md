@@ -7,7 +7,7 @@
 - [Sobre](#-sobre)
 - [Tecnologias utilizadas](#-tecnologias-utilizadas)
 - [Funcionalidades](#-Funcionalidades)
-- [Acessar pokédex](#-Acessar-pokédex)
+- [Acessar pokedex](#-Acessar-pokedex)
 
 ---
 
@@ -38,7 +38,7 @@ O projeto foi feito utilizando das seguintes tecnologias:
 
 ---
 
-## Acessar pokédex
+## Acessar pokedex
 
 Segue o link para acessar o projeto: [Pokédex](https://pokedex-marcelones.vercel.app/)
 
