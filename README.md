@@ -28,7 +28,7 @@ O projeto foi feito utilizando das seguintes tecnologias:
 
 ---
 
-## 💻 Funcionalidades
+## Funcionalidades
 
 - Listagem de pokémons da api separados por região
 
