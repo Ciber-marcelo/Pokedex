@@ -4,10 +4,10 @@
 
 ## Indice
 
-- [Sobre](#-sobre)
-- [Tecnologias utilizadas](#-tecnologias-utilizadas)
-- [Funcionalidades](#-Funcionalidades)
-- [Acessar pokedex](#-Acessar-pokedex)
+- [Sobre](#sobre)
+- [Tecnologias utilizadas](#tecnologias-utilizadas)
+- [Funcionalidades](#Funcionalidades)
+- [Acessar pokedex](#Acessar-pokedex)
 
 ---
 
