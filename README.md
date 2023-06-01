@@ -40,7 +40,7 @@ O projeto foi feito utilizando das seguintes tecnologias:
 
 ## Acessar pokédex
 
-Segue o link para acessar o projeto: <a href="https://pokedex-marcelones.vercel.app/" target="_blank">Pokédex</a>
+Segue o link para acessar o projeto: [Pokédex](https://pokedex-marcelones.vercel.app/)
 
 Desenvlvido por Marcelones
 
