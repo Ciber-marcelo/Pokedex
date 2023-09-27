@@ -13,7 +13,7 @@
 
 ## Sobre
 
-Projeto **Pokédex**, projeto feito para simular uma pokédex dos jogos da franquia Pokémon utilizando a api pokeapi.
+Projeto **Pokédex**, projeto feito para simular uma pokédex dos jogos da franquia Pokémon utilizando a [PokéAPI](https://pokeapi.co/)
 
 ---
 
