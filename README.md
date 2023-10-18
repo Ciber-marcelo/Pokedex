@@ -32,7 +32,7 @@ Instruções:
   # Compilar o projeto:
   npm install
 
-  # Rodar o projeto
+  # Rodar o projeto:
   npm run dev 
 ```
 
