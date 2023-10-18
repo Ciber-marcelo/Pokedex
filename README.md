@@ -13,7 +13,7 @@
 
 ## Sobre
 
-Projeto **Pokédex**, projeto feito para simular uma pokédex dos jogos da franquia Pokémon utilizando a [PokéAPI](https://pokeapi.co/)
+**Pokédex** é uma aplicação web feita para simular uma pokédex dos jogos da franquia Pokémon, utilizando a [PokéAPI](https://pokeapi.co/) para listar cada pokémon e suas principais informações dos jogos.
 
 ---
 
@@ -25,6 +25,16 @@ O projeto foi feito utilizando das seguintes tecnologias:
 - Typescript
 - Styled-Components
 - Axios
+
+Instruções:
+
+```bash
+  # Compilar o projeto:
+  npm install
+
+  # Rodar o projeto
+  npm run dev 
+```
 
 ---
 
