@@ -1,6 +1,4 @@
-<h1 align="center">
-  <img alt="Logo" src="https://cdn.discordapp.com/attachments/1113816777483370506/1113817874239344710/image.png" width="100%">
-</h1>
+<img alt="Logo" src="https://cdn.discordapp.com/attachments/1113816777483370506/1113817874239344710/image.png" width="100%">
 
 ## Indice
 
@@ -24,7 +22,6 @@ O projeto foi feito utilizando das seguintes tecnologias:
 - React JS
 - Typescript
 - Styled-Components
-- Axios
 
 Instruções:
 
@@ -52,7 +49,9 @@ Instruções:
 
 Segue o link para acessar o projeto: [Pokédex](https://pokedex-marcelones.vercel.app/)
 
-Desenvlvido por Marcelones
-
+<br/>
+<div align="center">
+  Desenvlvido por Marcelones
+</div>
 
 
