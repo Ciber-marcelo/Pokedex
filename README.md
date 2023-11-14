@@ -51,7 +51,7 @@ Segue o link para acessar o projeto: [Pokédex](https://pokedex-marcelones.verce
 
 <br/>
 <div align="center">
-  Desenvlvido por Marcelones
+  Desenvolvido por Marcelones
 </div>
 
 
