@@ -1,4 +1,4 @@
-<img alt="Logo" src="https://cdn.discordapp.com/attachments/1113816777483370506/1113817874239344710/image.png" width="100%">
+<img alt="Logo" src="https://cdn.discordapp.com/attachments/794432010441064468/1162464639116910712/image.png?ex=6560f28f&is=654e7d8f&hm=99fa8da7e4faa80ef1a348537d32bb5d5c39f32df77c09707d643e8d6c112ce7&" width="100%">
 
 ## Indice
 
