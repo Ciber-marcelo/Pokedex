@@ -5,7 +5,6 @@
 - [Sobre](#sobre)
 - [Tecnologias utilizadas](#tecnologias-utilizadas)
 - [Funcionalidades](#Funcionalidades)
-- [Acessar pokedex](#Acessar-pokedex)
 
 ---
 
@@ -42,12 +41,6 @@ Instruções:
 - Visualização dos tipos de cada pokémon
 
 - Visualização das cores alternativas de cada pokémon
-
----
-
-## Acessar pokedex
-
-Segue o link para acessar o projeto: [Pokédex](https://pokedex-marcelones.vercel.app/)
 
 <br/>
 <div align="center">
